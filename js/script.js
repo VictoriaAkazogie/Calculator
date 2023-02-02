@@ -1,35 +1,39 @@
+// Business logic
 function add(num1, num2) {
-  return num1 + num2;
+  return num1 + num2
+};
+function subtract(num1, num2) {
+  return num1 - num2
+};
+function multiply(num1, num2) {
+  return num1 * num2
+};
+function divide(num1, num2) {
+  return num1 / num2
+};
+function modulo(num1, num2) {
+  return num1 % num2
 }
 
-const num1 = parseInt(prompt("Enter a number:"));
-const num2 = parseInt(prompt("Enter another number:"));
-const result1 = add(num1, num2);
-alert(result1);
-
-function subtract(num3, num4) {
-  return num3 - num4;
-}
-
-const num3 = parseInt(prompt("Enter a number:"));
-const num4 = parseInt(prompt("Enter another number:"));
-const result2 = subtract(num3, num4);
-alert(result2);
-
-function multiply(num5, num6) {
-  return num5 * num6;
-}
-
-const num5 = parseInt(prompt("Enter a number:"));
-const num6 = parseInt(prompt("Enter another number:"));
-const result3 = multiply(num5, num6);
-alert(result3);
-
-function divide(num7, num8) {
-  return num7 / num8;
-}
-
-const num7 = parseInt(prompt("Enter a number:"));
-const num8 = parseInt(prompt("Enter another number:"));
-const result4 = divide(num7, num8);
-alert(result4);
+// User interface
+$(document).ready(function () {
+  $("#form1").submit(function (event) {
+    event.preventDefault();
+    const number1 = parseInt($("#input1").val());
+    const number2 = parseInt($("#input2").val());
+    const operator = $("input:radio[name=operator]:checked").val();
+    let result;
+    if (operator === "add") {
+      result = add(number1, number2);
+    } else if (operator === "subtract") {
+      result = subtract(number1, number2);
+    } else if (operator === "multiply") {
+      result = multiply(number1, number2);
+    } else if (operator === "divide") {
+      result = divide(number1, number2);
+    } else if (operator === "modulo") {
+      result = modulo(number1, number2)
+    }
+    $("#output").text(result);
+  });
+});
